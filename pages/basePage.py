@@ -25,3 +25,6 @@ class BasePage:
 
 	def to_module(self, module):
 		self.click_element((By.LINK_TEXT, module))
+		
+	def send_keys_to_element(self, locator, text):
+		self.driver.find_element(*locator).send_keys(text)
