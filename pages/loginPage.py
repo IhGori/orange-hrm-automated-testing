@@ -3,9 +3,9 @@ from pages.basePage import BasePage
 
 class LoginPage(BasePage):
 	url = "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login"
-	input_username = (By.CSS_SELECTOR, "input[placeholder='Username']")
+	input_username = (By.CSS_SELECTOR, "input[name='username']")
 	text_username = "Admin"
-	input_password = (By.CSS_SELECTOR, "input[placeholder='Password']")
+	input_password = (By.CSS_SELECTOR, "input[name='password']")
 	text_password = "admin123"
 	button_login = (By.XPATH, "//button[@type='submit']")
 	dashboard_url = "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index"
