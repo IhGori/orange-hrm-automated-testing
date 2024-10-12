@@ -94,8 +94,9 @@ class RecruitmentPage(BasePage):
 		save_button = self.driver.find_element(*self.button_save)
 
 		save_button.click()
+		#Necessário colocar esse time, pois a plataforma está com algum problema e se não der o delay acaba não criando a vaga
 		time.sleep(2)
-		print(random_name)
+
 		assert self.driver.current_url != self.url_add_vacancy
 
 		self.access_module()
