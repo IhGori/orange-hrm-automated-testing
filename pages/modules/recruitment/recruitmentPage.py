@@ -44,19 +44,6 @@ class RecruitmentPage(BasePage):
 	url_add_vacancy = "https://opensource-demo.orangehrmlive.com/web/index.php/recruitment/addCandidate"
 	text_result_filter = (By.XPATH, '//div[@class="orangehrm-horizontal-padding orangehrm-vertical-padding"]//span')
 
-	def access_module(self):
-		WebDriverWait(self.driver, 10).until(
-			EC.visibility_of_element_located(self.list_of_modules)
-		)
-
-		modules = self.driver.find_elements(*self.module_item)
-		for module in modules:
-			if module.text == 'Recruitment':
-				WebDriverWait(self.driver, 5).until(
-					EC.element_to_be_clickable(module)
-				).click()
-				break
-
 	def generate_random_string(self):
 		letters = string.ascii_letters
 		return ''.join(random.choice(letters) for i in range(10))
@@ -99,7 +86,7 @@ class RecruitmentPage(BasePage):
 
 		assert self.driver.current_url != self.url_add_vacancy
 
-		self.access_module()
+		self.access_module("Recruitment")
 
 		return random_name
 
@@ -127,7 +114,7 @@ class RecruitmentPage(BasePage):
 
 		self.click_element(self.button_save)
 
-		self.access_module()
+		self.access_module("Recruitment")
 
 
 	def test_filter_vacancy(self, vacancy_name):

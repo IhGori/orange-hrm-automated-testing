@@ -19,21 +19,9 @@ class BuzzPage(BasePage):
 	confirm_delete_button = (By.XPATH, "//button[normalize-space()='Yes, Delete']")
 	toast_response = (By.CSS_SELECTOR, "div.oxd-toast--success")
 	toast_text = (By.CSS_SELECTOR, "oxd-toast-content-text")
-
-	def access_module(self):
-		WebDriverWait(self.driver, 10).until(
-			EC.visibility_of_element_located(self.list_of_modules)
-		)
-
-		modules = self.driver.find_elements(*self.module_item)
-		for module in modules:
-			if module.text == 'Buzz':
-				WebDriverWait(self.driver, 5).until(
-					EC.element_to_be_clickable(module)
-				).click()
-				break
-	
+ 
 	def create_post(self):
+		time.sleep(2) #pagina limpa o texto digitado pós carregar, foi preciso add um tempo
 		self.await_element(*self.input_new_post).send_keys("Olá pessoal!")
 		self.click_element(self.button_new_post)
 		success_toast = self.await_element(*self.toast_response)
