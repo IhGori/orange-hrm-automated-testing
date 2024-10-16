@@ -1,6 +1,7 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.keys import Keys
 
 class BasePage:    
 	module_item = (By.CSS_SELECTOR, ".oxd-main-menu-item-wrapper")
@@ -30,6 +31,10 @@ class BasePage:
 		self.click_element((By.LINK_TEXT, module))
 		
 	def send_keys_to_element(self, locator, text):
+		#limpar texto 
+		self.driver.find_element(*locator).send_keys(Keys.CONTROL, 'a')
+		self.driver.find_element(*locator).send_keys(Keys.BACKSPACE)
+		#escrever
 		self.driver.find_element(*locator).send_keys(text)
 
 	def access_module(self, moduleName):
